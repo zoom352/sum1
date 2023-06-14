@@ -39,20 +39,11 @@ const Registration = () => {
         }
     }
 
-    const onChangeName = (e) => {
-        setState((state) => ({...state, name: e.target.value}))
-    }
-
-    const onChangeLogin = (e) => {
-        setState((state) => ({...state, username: e.target.value}))
-    }
-
-    const onChangePassword = (e) => {
-        setState((state) => ({...state, password: e.target.value}))
-    }
-
-    const onChangePasswordRepeat = (e) => {
-        setState((state) => ({...state, passwordRepeat: e.target.value}))
+    const onChangeField = (fieldName, e) => {
+        setState((prevState) => ({
+            ...prevState,
+            [fieldName]: e.target.value
+        }))
     }
 
     return (
@@ -62,7 +53,7 @@ const Registration = () => {
                     <div>
                         <span>Имя</span>
                         <input
-                            onChange={onChangeName}
+                            onChange={(e) => onChangeField("name", e)}
                             value={state.name}
                         />
                     </div>
@@ -73,7 +64,7 @@ const Registration = () => {
                         }
                         <span>Логин</span>
                         <input
-                            onChange={onChangeLogin}
+                            onChange={(e) => onChangeField("username", e)}
                             value={state.username}
                         />
                     </div>
@@ -81,7 +72,7 @@ const Registration = () => {
                         <span>Введите пароль</span>
                         <input
                             type="password"
-                            onChange={onChangePassword}
+                            onChange={(e) => onChangeField("password", e)}
                             value={state.password}
                         />
                     </div>
@@ -92,7 +83,7 @@ const Registration = () => {
                             <span>Повторите пароль</span>
                             <input
                                 type="password"
-                                onChange={onChangePasswordRepeat}
+                                onChange={(e) => onChangeField("passwordRepeat", e)}
                                 value={state.passwordRepeat}
                             />
                     </div>
